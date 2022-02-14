@@ -30,9 +30,6 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
-//Spring Boot Overriding
-ext['hibernate.version'] = '5.2.11.Final' //추가
-
 tasks.named('test') {
     useJUnitPlatform()
 }
