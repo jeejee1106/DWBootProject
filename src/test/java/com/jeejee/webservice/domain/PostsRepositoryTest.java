@@ -30,6 +30,12 @@ public class PostsRepositoryTest {
         postsRepository.deleteAll();
     }
 
+    /**
+     * DB가 설치가 안되어있는데 Repository를 사용할 수 있는 이유는, SpringBoot에서의 테스트 코드는 메모리 DB인 H2를 기본적으로 사용하기 때문
+     * 테스트 코드를 실행하는 시점에 H2 DB를 실행시킨다.
+     * 테스트가 끝나면 H2 DB도 같이 종료된다.
+     */
+
     @Test
     public void 게시글저장_불러오기() {
         //given

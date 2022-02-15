@@ -14,6 +14,12 @@ public class WebRestController {
 
     private PostsRepository postsRepository;
 
+    /**
+     * 눈에 보이지는 않지만 롬복의 @AllArgsConstructor로 인해 현재 기본 생성자가 만들어진 상태다.
+     * 생성자가 하나일 땐 @Autowired의 생략이 가능하다.
+     * 즉, 현재 기본 생성자에 의존성 주입이 되어있는 상태이다!!
+     */
+
     @GetMapping("/hello")
     public String hello() {
         return "HelloWorld";
