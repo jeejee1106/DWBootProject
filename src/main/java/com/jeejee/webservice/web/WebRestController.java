@@ -2,6 +2,7 @@ package com.jeejee.webservice.web;
 
 import com.jeejee.webservice.domain.PostsRepository;
 import com.jeejee.webservice.dto.posts.PostsSaveRequestDto;
+import com.jeejee.webservice.service.PostsService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class WebRestController {
 
     private PostsRepository postsRepository;
+    private PostsService postsService;
 
     /**
      * 눈에 보이지는 않지만 롬복의 @AllArgsConstructor로 인해 현재 기본 생성자가 만들어진 상태다.
@@ -26,7 +28,7 @@ public class WebRestController {
     }
 
     @PostMapping("/posts")
-    public void savePost(@RequestBody PostsSaveRequestDto dto) {
-        postsRepository.save(dto.toEntity());
+    public Long savePost(@RequestBody PostsSaveRequestDto dto) {
+        return postsService.save(dto);
     }
 }
