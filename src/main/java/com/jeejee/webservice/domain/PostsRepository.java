@@ -1,6 +1,9 @@
 package com.jeejee.webservice.domain;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+
+import java.util.stream.Stream;
 
 /**
  * 보통 ibatis/MyBatis 등에서 Dao라고 불리는 DB Layer 접근자이다.
@@ -10,4 +13,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
  */
 
 public interface PostsRepository extends JpaRepository<Posts, Long> {
+    @Query("select p " + "from Posts p " + "order by p.id desc")
+    Stream<Posts> findAllDesc();
 }

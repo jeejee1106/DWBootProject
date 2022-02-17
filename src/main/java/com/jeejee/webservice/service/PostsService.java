@@ -1,10 +1,13 @@
 package com.jeejee.webservice.service;
 
 import com.jeejee.webservice.domain.PostsRepository;
-import com.jeejee.webservice.dto.posts.PostsSaveRequestDto;
+import com.jeejee.webservice.dto.PostsMainResponseDto;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Controller에서 Dto.toEntity를 통해서 바로 전달해도 되는데 굳이 Service에서 Dto를 받는 이유는 간단하다.
@@ -18,8 +21,10 @@ public class PostsService {
     private PostsRepository postsRepository;
 
     //일반적으로 DB 데이터를 등록/수정/삭제 하는 Service의 메소드는 @Transactional를 필수적으로 가져간다.
-    @Transactional
-    public Long save(PostsSaveRequestDto dto) {
-        return postsRepository.save(dto.toEntity()).getId();
+    @Transactional(readOnly = true)
+    public List<PostsMainResponseDto> findAllDesc() {
+        return postsRepository.findAllDesc()
+                .map(PostsMainResponseDto::new)
+                .collect(Collectors.toList());
     }
 }
