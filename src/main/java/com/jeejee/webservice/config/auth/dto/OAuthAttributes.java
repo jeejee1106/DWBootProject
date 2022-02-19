@@ -3,9 +3,11 @@ package com.jeejee.webservice.config.auth.dto;
 import com.jeejee.webservice.domain.user.Role;
 import com.jeejee.webservice.domain.user.User;
 import lombok.Builder;
+import lombok.Getter;
 
 import java.util.Map;
 
+@Getter
 public class OAuthAttributes {
 
     private Map<String, Object> attributes;
@@ -24,10 +26,10 @@ public class OAuthAttributes {
     }
 
     public static OAuthAttributes of(String registrationId, String userNameAttributeName, Map<String, Object> attributes) {
-        return odGoogle(userNameAttributeName, attributes);
+        return ofGoogle(userNameAttributeName, attributes);
     }
 
-    private static OAuthAttributes odGoogle(String userNameAttributeName, Map<String, Object> attributes) {
+    private static OAuthAttributes ofGoogle(String userNameAttributeName, Map<String, Object> attributes) {
         return OAuthAttributes.builder()
                 .name((String) attributes.get("name"))
                 .email((String) attributes.get("email"))
