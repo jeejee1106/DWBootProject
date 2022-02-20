@@ -25,8 +25,15 @@ public class OAuthAttributes {
         this.picture = picture;
     }
 
-    public static OAuthAttributes of(String registrationId, String userNameAttributeName, Map<String, Object> attributes) {
-        return ofGoogle(userNameAttributeName, attributes);
+
+    public static OAuthAttributes of(String registrationId, String userNameAttributeName, Map<String,Object> attributes) {
+        return OAuthAttributes.builder()
+                .name((String) attributes.get("name"))
+                .email((String) attributes.get("email"))
+                .picture((String) attributes.get("picture"))
+                .attributes(attributes)
+                .nameAttributeKey(userNameAttributeName)
+                .build();
     }
 
     private static OAuthAttributes ofGoogle(String userNameAttributeName, Map<String, Object> attributes) {
@@ -34,9 +41,23 @@ public class OAuthAttributes {
                 .name((String) attributes.get("name"))
                 .email((String) attributes.get("email"))
                 .picture((String) attributes.get("picture"))
-                .attributes(attributes).nameAttributeKey(userNameAttributeName)
+                .attributes(attributes)
+                .nameAttributeKey(userNameAttributeName)
                 .build();
     }
+
+//    public static OAuthAttributes of(String registrationId, String userNameAttributeName, Map<String, Object> attributes) {
+//        return ofGoogle(userNameAttributeName, attributes);
+//    }
+//
+//    private static OAuthAttributes ofGoogle(String userNameAttributeName, Map<String, Object> attributes) {
+//        return OAuthAttributes.builder()
+//                .name((String) attributes.get("name"))
+//                .email((String) attributes.get("email"))
+//                .picture((String) attributes.get("picture"))
+//                .attributes(attributes).nameAttributeKey(userNameAttributeName)
+//                .build();
+//    }
 
     public User toEntity() {
         return User.builder()
