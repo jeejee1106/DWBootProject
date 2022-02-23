@@ -36,7 +36,7 @@ public class PostServiceTest {
                 .build();
 
         //when
-        postsService.save(dto);
+        //postsService.save(dto);
 
         //then
         Posts posts = postsRepository.findAll().get(0);

@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 //모든 Entity들의 상위 클래스가 되어 Entity들의 createdDate, modifiedDate를 자동으로 관리하는 역할을 하는 클래스
 
 @Getter
-@MappedSuperclass //JPA Entity들이 BaseTimeEntity를 상속할 경우 필드들도 컬럼으로 인식하도록 함
+@MappedSuperclass //JPA Entity들이 BaseTimeEntity를 상속할 경우 이 클래스의 필드들(createdDate, modifiedDate)도 컬럼으로 인식하도록 함
 @EntityListeners(AuditingEntityListener.class) //BaseTimeEntity클래스에 Auditing기능을 포함시킨다.
 public class BaseTimeEntity {
 

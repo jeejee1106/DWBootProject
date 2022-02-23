@@ -11,7 +11,7 @@ import javax.persistence.*;
  * 이 클래스는 실제 DB테이블과 매칭될 클래스이며 Entity클래스라고 한다. (@Entity 어노테이션 사용하면 테이블과 자바 클래스가 매핑된다.)
  * JPA를 사용하면 DB데이터에 작업할 경우 실제 쿼리를 날리기 보다는, 이 Entity클래스의 수정을 통해 작업한다.
  *
- * 즉, JPA는 자동으로 테이블을 생성하는 기능능 있다!!!
+ * 즉, JPA는 자동으로 테이블을 생성하는 기능이 있다!!!
  *
  * JPA에서 제공하는 어노테이션
  * @Entity : 테이블과 링크 될 클래스임을 나타낸다. 언더스코어 네이밍으로 이름을 매칭 ex) ex) TestPosts.java -> test_posts table
@@ -37,19 +37,24 @@ public class Posts extends BaseTimeEntity {
 
     private String author;
 
-    @Builder //롬복 어노테이션 - 해당 클래스의 빌더패턴 클래스를 생성, 생성자 상단에 선언시 생성자에 포함된 필드만 빌더에 포함
+    @Builder //롬복 어노테이션 - 클래스에 선언하면 해당 클래스의 빌더패턴 클래스를 생성하고, 생성자 상단에 선언시 생성자에 포함된 필드만 빌더에 포함
     public Posts(String title, String content, String author) {
         this.title = title;
         this.content = content;
         this.author = author;
+    /**
+     * 빌더 패턴의 장점
+     * 1. 필요한 데이터만 설정할 수 있음
+     * 2. 유연성을 확보할 수 있음
+     * 3. 가독성을 높일 수 있음
+     * 4. 불변성을 확보할 수 있음
+     * 참고 블로그 : https://mangkyu.tistory.com/163
+     */
     }
 }
 
 /**
- * 빌더 패턴의 장점
- * 1. 필요한 데이터만 설정할 수 있음
- * 2. 유연성을 확보할 수 있음
- * 3. 가독성을 높일 수 있음
- * 4. 불변성을 확보할 수 있음
- * 참고 블로그 : https://mangkyu.tistory.com/163
+ * Entity 클래스를 생성할 때는 무분별한 setter메서드 생성을 주의해야한다.
+ * settet는 인스턴스 값들이 언제 어디서 변해야하는지 코드상으로 명확히 구분할 수가 없다. (차후 기능 변경 시 복잡해진다.)
+ * 해당 필드의 값 변경이 필요하면 명확히 그 목적과 의도를 나타낼 수 있는 메서드를 추가해야한다!
  */
