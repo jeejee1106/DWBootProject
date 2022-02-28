@@ -9,7 +9,8 @@ import javax.persistence.EntityListeners;
 import javax.persistence.MappedSuperclass;
 import java.time.LocalDateTime;
 
-//모든 Entity들의 상위 클래스가 되어 Entity들의 createdDate, modifiedDate를 자동으로 관리하는 역할을 하는 클래스
+// 생성시간/수정시간 자동화
+// 모든 Entity들의 상위 클래스가 되어 Entity들의 createdDate, modifiedDate를 자동으로 관리하는 역할을 하는 클래스
 
 @Getter
 @MappedSuperclass //JPA Entity들이 BaseTimeEntity를 상속할 경우 이 클래스의 필드들(createdDate, modifiedDate)도 컬럼으로 인식하도록 함

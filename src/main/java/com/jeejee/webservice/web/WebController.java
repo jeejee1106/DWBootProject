@@ -23,6 +23,11 @@ public class WebController {
         if (user != null) {
             model.addAttribute("userName", user.getName());
         }
-        return "main";
+        return "main"; //머스테치 스타터로 인해 컨트롤러에서 문자열을 반환할 때 앞의 경로와 뒤의 확장자는 자동으로 지정된다.
+    }
+
+    @GetMapping("/posts/save")
+    public String postsSave() {
+        return "posts-save";
     }
 }

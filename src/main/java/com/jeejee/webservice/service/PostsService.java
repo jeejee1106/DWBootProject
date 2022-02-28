@@ -21,6 +21,7 @@ public class PostsService {
     private PostsRepository postsRepository;
 
     //일반적으로 DB 데이터를 등록/수정/삭제 하는 Service의 메소드는 @Transactional를 필수적으로 가져간다.
+    //@Transactional은 메소드 실행 중 Exception이 발생하면 해당 메소드에서 실행 중 이루어진 모든 DB작업을 초기화 시킨다.
     @Transactional(readOnly = true)
     public List<PostsMainResponseDto> findAllDesc() {
         return postsRepository.findAllDesc()
