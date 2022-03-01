@@ -5,9 +5,11 @@ package com.jeejee.webservice.web;
 //import com.jeejee.webservice.dto.posts.PostsSaveRequestDto;
 //import com.jeejee.webservice.service.PostsService;
 //import lombok.AllArgsConstructor;
+import com.jeejee.webservice.web.dto.WebRestControllerDto;
 import org.springframework.web.bind.annotation.GetMapping;
 //import org.springframework.web.bind.annotation.PostMapping;
 //import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 //import java.util.List;
@@ -20,7 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController //JSON을 반환하는 컨트롤러
 //@AllArgsConstructor //모든 필드를 인자값으로 하는 생성자를 생성
 public class WebRestController {
-//
+    //
 //    private PostsRepository postsRepository;
 //    private PostsService postsService;
 //
@@ -33,6 +35,11 @@ public class WebRestController {
     @GetMapping("/hello")
     public String hello() {
         return "HelloWorld";
+    }
+
+    @GetMapping("/hello/dto")
+    public WebRestControllerDto restDro(@RequestParam("name") String name, @RequestParam("amount") int amount) {
+        return new WebRestControllerDto(name, amount);
     }
 //
 //    @PostMapping("/posts")
