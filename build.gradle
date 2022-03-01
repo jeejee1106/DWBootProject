@@ -27,9 +27,9 @@ dependencies {
 
     compileOnly 'org.projectlombok:lombok'
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
-    runtimeOnly 'com.h2database:h2'
+    runtimeOnly 'com.h2database:h2' // 인메모리 관계형 데이터베이스. 별도의 설치 없이 프로젝트 의존성만으로 관리 가능
     annotationProcessor 'org.projectlombok:lombok'
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa' // Spring Data Jpa 추상화 라이브러리. 자동으로 JPA 관련 라이브러리들의 버전을 관리한다.
     providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
