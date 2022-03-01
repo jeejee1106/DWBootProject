@@ -1,85 +1,86 @@
 
-{{>layout/header}}
-<h1>Start WebService with SpringBoot</h1>
-<div class="col-md-12">
-    <!-- 로그인 기능 영역 -->
-    <div class="row">
-        <div class="col-md-6">
-            {{#userName}}
-                Logged in as: <span id="user">{{userName}}</span>
-                <a href="/logout" class="btn btn-info active" role="button">Logout</a>
-            {{/userName}}
-            {{^userName}}
-                <a href="/oauth2/authorization/google"
-                   class="btn btn-success active" role="button">Google Login</a>
-                <a href="/oauth2/authorization/naver"
-                   class="btn btn-secondary active" role="button">Naver Login</a>
-            {{/userName}}
-        </div>
-    </div>
-    <!-- 로그인 기능 끝 -->
+<!--{{>layout/header}}-->
+<!--<h1>Start WebService with SpringBoot</h1>-->
+<!--<div class="col-md-12">-->
+<!--    &lt;!&ndash; 로그인 기능 영역 &ndash;&gt;-->
+<!--    <div class="row">-->
+<!--        <div class="col-md-6">-->
+<!--            {{#userName}} &lt;!&ndash; 머스테치는 if문을 제공하지 않는다. true/false 여부만 판단한다. userName이 있다면 userName을 노출시킨다. &ndash;&gt;-->
+<!--                Logged in as: <span id="user">{{userName}}</span>-->
+<!--                <a href="/logout" class="btn btn-info active" role="button">Logout</a> &lt;!&ndash; 스프링 시큐리티에서 기본적으로 제공하는 로그아웃 URL. 별도의 URL 컨트롤러가 필요 없다. &ndash;&gt;-->
+<!--            {{/userName}}-->
 
-    <br>
-    <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#savePostsModal">글 등록</button> -->
-    <a href="/posts/save" role="button" class="btn btn-primary">글 등록</a>
-    <br><br>
+<!--            {{^userName}} &lt;!&ndash; 머스테치에서 해당 값이 존재하지 않을 때 ^ 기호를 사용한다. userName이 없는 경우 로그인 버튼을 노출시킨다. &ndash;&gt;-->
+<!--                <a href="/oauth2/authorization/google"-->
+<!--                   class="btn btn-success active" role="button">Google Login</a> &lt;!&ndash; a href="/oauth2/authorization/google" 스프링 시큐리티에서 기본적으로 제공하는 로그인 URL. &ndash;&gt;-->
+<!--                <a href="/oauth2/authorization/naver"-->
+<!--                   class="btn btn-secondary active" role="button">Naver Login</a>-->
+<!--            {{/userName}}-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    &lt;!&ndash; 로그인 기능 끝 &ndash;&gt;-->
 
-    <!-- 목록 출력 영역 -->
-    <table class="table table-horizontal table-bordered">
-        <thead class="thead-strong">
-            <tr>
-                <th>게시글번호</th>
-                <th>제목</th>
-                <th>작성자</th>
-                <th>최종수정일</th>
-            </tr>
-        </thead>
-        <tbody id="tbody">
-            {{#posts}}
-                <tr>
-                    <td>{{id}}</td>
-                    <td>{{title}}</td>
-                    <td>{{author}}</td>
-                    <td>{{modifiedDate}}</td>
-                </tr>
-            {{/posts}}
-        </tbody>
-    </table>
-</div>
+<!--    <br>-->
+<!--    &lt;!&ndash; <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#savePostsModal">글 등록</button> &ndash;&gt;-->
+<!--    <a href="/posts/save" role="button" class="btn btn-primary">글 등록</a>-->
+<!--    <br><br>-->
 
-<!-- Modal 영역 -->
-<div class="modal fade" id="savePostsModal" tabindex="-1" role="dialog" aria-labelledby="savePostsLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="savePostsLabel">게시글 등록</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form>
-                    <div class="form-group">
-                        <label for="title">제목</label>
-                        <input type="text" class="form-control" id="title" placeholder="제목을 입력하세요">
-                    </div>
-                    <div class="form-group">
-                        <label for="author"> 작성자 </label>
-                        <input type="text" class="form-control" id="author" placeholder="작성자를 입력하세요">
-                    </div>
-                    <div class="form-group">
-                        <label for="content"> 내용 </label>
-                        <textarea class="form-control" id="content" placeholder="내용을 입력하세요"></textarea>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
-            <button type="button" class="btn btn-primary" id="btn-save">등록</button>
-            </div>
-        </div>
-    </div>
-</div>
+<!--    &lt;!&ndash; 목록 출력 영역 &ndash;&gt;-->
+<!--    <table class="table table-horizontal table-bordered">-->
+<!--        <thead class="thead-strong">-->
+<!--            <tr>-->
+<!--                <th>게시글번호</th>-->
+<!--                <th>제목</th>-->
+<!--                <th>작성자</th>-->
+<!--                <th>최종수정일</th>-->
+<!--            </tr>-->
+<!--        </thead>-->
+<!--        <tbody id="tbody">-->
+<!--            {{#posts}}-->
+<!--                <tr>-->
+<!--                    <td>{{id}}</td>-->
+<!--                    <td>{{title}}</td>-->
+<!--                    <td>{{author}}</td>-->
+<!--                    <td>{{modifiedDate}}</td>-->
+<!--                </tr>-->
+<!--            {{/posts}}-->
+<!--        </tbody>-->
+<!--    </table>-->
+<!--</div>-->
 
-{{>layout/footer}}
+<!--&lt;!&ndash;&lt;!&ndash; Modal 영역 &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;<div class="modal fade" id="savePostsModal" tabindex="-1" role="dialog" aria-labelledby="savePostsLabel" aria-hidden="true">&ndash;&gt;-->
+<!--&lt;!&ndash;    <div class="modal-dialog" role="document">&ndash;&gt;-->
+<!--&lt;!&ndash;        <div class="modal-content">&ndash;&gt;-->
+<!--&lt;!&ndash;            <div class="modal-header">&ndash;&gt;-->
+<!--&lt;!&ndash;                <h5 class="modal-title" id="savePostsLabel">게시글 등록</h5>&ndash;&gt;-->
+<!--&lt;!&ndash;                <button type="button" class="close" data-dismiss="modal" aria-label="Close">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <span aria-hidden="true">&times;</span>&ndash;&gt;-->
+<!--&lt;!&ndash;                </button>&ndash;&gt;-->
+<!--&lt;!&ndash;            </div>&ndash;&gt;-->
+<!--&lt;!&ndash;            <div class="modal-body">&ndash;&gt;-->
+<!--&lt;!&ndash;                <form>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <div class="form-group">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <label for="title">제목</label>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <input type="text" class="form-control" id="title" placeholder="제목을 입력하세요">&ndash;&gt;-->
+<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <div class="form-group">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <label for="author"> 작성자 </label>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <input type="text" class="form-control" id="author" placeholder="작성자를 입력하세요">&ndash;&gt;-->
+<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <div class="form-group">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <label for="content"> 내용 </label>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <textarea class="form-control" id="content" placeholder="내용을 입력하세요"></textarea>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                </form>&ndash;&gt;-->
+<!--&lt;!&ndash;            </div>&ndash;&gt;-->
+<!--&lt;!&ndash;            <div class="modal-footer">&ndash;&gt;-->
+<!--&lt;!&ndash;            <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>&ndash;&gt;-->
+<!--&lt;!&ndash;            <button type="button" class="btn btn-primary" id="btn-save">등록</button>&ndash;&gt;-->
+<!--&lt;!&ndash;            </div>&ndash;&gt;-->
+<!--&lt;!&ndash;        </div>&ndash;&gt;-->
+<!--&lt;!&ndash;    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+<!--{{>layout/footer}}-->
 
