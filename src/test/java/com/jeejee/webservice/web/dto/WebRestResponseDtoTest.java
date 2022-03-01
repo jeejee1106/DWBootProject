@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.*;
 
-public class WebRestControllerDtoTest {
+public class WebRestResponseDtoTest {
 
     @Test
     public void lombokTest() {
@@ -13,14 +13,14 @@ public class WebRestControllerDtoTest {
         int amount = 1000;
 
         //when
-        WebRestControllerDto dto = new WebRestControllerDto(name, amount);
+        WebRestResponseDto dto = new WebRestResponseDto(name, amount);
 
         //then
         assertThat(dto.getName()).isEqualTo(name);
         assertThat(dto.getAmount()).isEqualTo(amount);
 
         /**
-         * assertThat() : 검증하고자 하는 대상을 매개변수로 받는다. 즉, 
+         * assertThat() : 검증하고자 하는 대상을 매개변수로 받는다. 즉,
          */
     }
 }
