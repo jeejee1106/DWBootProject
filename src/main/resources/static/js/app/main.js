@@ -5,11 +5,9 @@ var main = {
             _this.save();
         });
         $('#btn-update').on('click', function(){
-            alert("dfdfdf");
-            //_this.update();
+            _this.update();
         });
         $('#btn-delete').on('click', function () {
-            alert("dfdfdf");
             _this.delete();
         });
     },
@@ -65,7 +63,7 @@ var main = {
 
         $.ajax({
             type: 'DELETE',
-            url: '/api/v1/posts/'+id,
+            url: '/api/posts/'+id,
             dataType: 'json',
             contentType:'application/json; charset=utf-8'
         }).done(function() {
