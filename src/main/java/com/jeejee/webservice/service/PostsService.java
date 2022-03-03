@@ -1,8 +1,11 @@
 package com.jeejee.webservice.service;
 
+import com.jeejee.webservice.domain.post.Posts;
 import com.jeejee.webservice.domain.post.PostsRepository;
-import com.jeejee.webservice.dto.PostsMainResponseDto;
-import com.jeejee.webservice.dto.posts.PostsSaveRequestDto;
+import com.jeejee.webservice.web.dto.PostsListResponseDto;
+import com.jeejee.webservice.web.dto.PostsResponseDto;
+import com.jeejee.webservice.web.dto.PostsSaveRequestDto;
+import com.jeejee.webservice.web.dto.PostsUpdateRequestDto;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,14 +26,41 @@ public class PostsService {
 
     //일반적으로 DB 데이터를 등록/수정/삭제 하는 Service의 메소드는 @Transactional를 필수적으로 가져간다.
     //@Transactional은 메소드 실행 중 Exception이 발생하면 해당 메소드에서 실행 중 이루어진 모든 DB작업을 초기화 시킨다.
+
+    //등록기능
     @Transactional
     public Long save(PostsSaveRequestDto dto){
-        return postsRepository.save(dto.toEntity()).getId();
+        return postsRepository.save(dto.toEntity()).getId(); //호출한쪽에서 저장한 게시글의 id를 알수있도록 id반환
     }
-//    @Transactional(readOnly = true)
-//    public List<PostsMainResponseDto> findAllDesc() {
-//        return postsRepository.findAllDesc()
-//                .map(PostsMainResponseDto::new)
-//                .collect(Collectors.toList());
-//    }
+
+    //전체 글 조회
+    @Transactional(readOnly = true) //readOnly = true 옵션은 트랜잭션 범위는 유지하되, 조회 기능만 남겨두는 역할을 한다. 조회 속도 개선!
+    public List<PostsListResponseDto> findAllDesc() {
+        return postsRepository.findAllDesc()
+                .map(PostsListResponseDto::new)
+                .collect(Collectors.toList());
+    }
+
+    // 수정/조회 기능
+    @Transactional
+    public Long update(Long id, PostsUpdateRequestDto requestDto){
+        Posts posts = postsRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("해당 게시글이 없습니다. id=" + id));
+        posts.update(requestDto.getTitle(), requestDto.getContent());
+        return id;
+    }
+
+    public PostsResponseDto findById(Long id){
+        Posts entity = postsRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("해당 게시글이 없습니다. id=" + id));
+
+        return new PostsResponseDto(entity);
+    }
+
+    //글 삭제
+    @Transactional
+    public void delete(Long id){
+        Posts posts = postsRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("해당 게시글이 없습니다. id=" + id));
+        postsRepository.delete(posts);
+    }
 }

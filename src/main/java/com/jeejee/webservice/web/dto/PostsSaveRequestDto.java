@@ -1,4 +1,4 @@
-package com.jeejee.webservice.dto.posts;
+package com.jeejee.webservice.web.dto;
 
 import com.jeejee.webservice.domain.post.Posts;
 import lombok.Builder;

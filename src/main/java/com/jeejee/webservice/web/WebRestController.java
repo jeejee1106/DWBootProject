@@ -1,16 +1,9 @@
 package com.jeejee.webservice.web;
 
-import com.jeejee.webservice.dto.PostsMainResponseDto;
-import com.jeejee.webservice.dto.posts.PostsSaveRequestDto;
 import com.jeejee.webservice.service.PostsService;
 import lombok.AllArgsConstructor;
-import com.jeejee.webservice.dto.posts.PostsSaveRequestDto;
-import com.jeejee.webservice.service.PostsService;
 import com.jeejee.webservice.web.dto.WebRestResponseDto;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import java.util.List;
 
 /**
  * @RestController는 @ResponseBody를 모든 메서드에 적용해준다.
@@ -35,14 +28,14 @@ public class WebRestController {
     }
 
     @GetMapping("/hello/dto")
-    public WebRestResponseDto restDro(@RequestParam("name") String name, @RequestParam("amount") int amount) {
+    public WebRestResponseDto restDto(@RequestParam("name") String name, @RequestParam("amount") int amount) {
         return new WebRestResponseDto(name, amount);
     }
 
-    @PostMapping("/posts")
-    public Long savePosts(@RequestBody PostsSaveRequestDto dto){
-        return postsService.save(dto);
-    }
+//    @PostMapping("/posts")
+//    public Long savePosts(@RequestBody PostsSaveRequestDto dto){
+//        return postsService.save(dto);
+//    } //PostsApController로 옮김
 
 //
 //    @PostMapping("/posts")

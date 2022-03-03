@@ -1,4 +1,4 @@
-package com.jeejee.webservice.dto;
+package com.jeejee.webservice.web.dto;
 
 import com.jeejee.webservice.domain.post.Posts;
 import lombok.Getter;
@@ -8,13 +8,13 @@ import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 
 @Getter
-public class PostsMainResponseDto {
+public class PostsListResponseDto {
     private Long id;
     private String title;
     private String author;
     private String modifiedDate;
 
-    public PostsMainResponseDto(Posts entity) {
+    public PostsListResponseDto(Posts entity) {
         id = entity.getId();
         title = entity.getTitle();
         author = entity.getAuthor();

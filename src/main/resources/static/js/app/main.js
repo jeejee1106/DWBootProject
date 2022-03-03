@@ -4,7 +4,17 @@ var main = {
         $('#btn-save').on('click', function () {
             _this.save();
         });
+        $('#btn-update').on('click', function(){
+            alert("dfdfdf");
+            //_this.update();
+        });
+        $('#btn-delete').on('click', function () {
+            alert("dfdfdf");
+            _this.delete();
+        });
     },
+
+    //글 등록
     save : function () {
         var data = {
             title: $('#title').val(),
@@ -14,8 +24,7 @@ var main = {
 
         $.ajax({
             type: 'POST',
-            url: '/posts',
-            // url: '/api/v1/posts',
+            url: '/api/posts',
             dataType: 'json',
             contentType:'application/json; charset=utf-8',
             data: JSON.stringify(data)
@@ -25,6 +34,45 @@ var main = {
             window.location.href='/';
         }).fail(function (error) {
             alert(error);
+        });
+    },
+
+    //글 수정
+    update : function () {
+        var data = {
+            title: $('#title').val(),
+            content: $('#content').val()
+        };
+        var id = $('#id').val();
+
+        $.ajax({
+            type: 'PUT',
+            url: '/api/posts/' + id,
+            dataType: 'json',
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify(data)
+        }).done(function (){
+            alert('글이 수정되었습니다.');
+            window.location.href = '/';
+        }).fail(function (error){
+            alert(JSON.stringify(error));
+        });
+    },
+
+    //글 삭제
+    delete : function () {
+        var id = $('#id').val();
+
+        $.ajax({
+            type: 'DELETE',
+            url: '/api/v1/posts/'+id,
+            dataType: 'json',
+            contentType:'application/json; charset=utf-8'
+        }).done(function() {
+            alert('글이 삭제되었습니다.');
+            window.location.href = '/';
+        }).fail(function (error){
+            alert(JSON.stringify(error));
         });
     }
 

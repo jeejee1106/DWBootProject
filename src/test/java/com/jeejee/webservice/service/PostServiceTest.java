@@ -2,12 +2,10 @@ package com.jeejee.webservice.service;
 
 import com.jeejee.webservice.domain.post.Posts;
 import com.jeejee.webservice.domain.post.PostsRepository;
-import com.jeejee.webservice.dto.posts.PostsSaveRequestDto;
-import org.assertj.core.api.Assertions;
+import com.jeejee.webservice.web.dto.PostsSaveRequestDto;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.ImportAutoConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.assertj.core.api.Assertions.*;
