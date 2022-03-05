@@ -1,6 +1,5 @@
 package com.jeejee.webservice.web;
 
-//import com.jeejee.webservice.config.auth.dto.SessionUser;
 import com.jeejee.webservice.config.auth.dto.SessionUser;
 import com.jeejee.webservice.service.PostsService;
 import com.jeejee.webservice.web.dto.PostsResponseDto;
@@ -26,7 +25,7 @@ public class MainController {
         //로그인 성공 시 httpSession.getAttribute("user")에서 값을 가져올 수 있다.
 
         if (user != null) { //세션에 저장된 값이 있을 때만 model에 UserName으로 등록.
-            model.addAttribute("userName", user.getName());
+            model.addAttribute("userNames", user.getName());
         }
         return "main"; //머스테치 스타터로 인해 컨트롤러에서 문자열을 반환할 때 앞의 경로와 뒤의 확장자는 자동으로 지정된다.
     }
