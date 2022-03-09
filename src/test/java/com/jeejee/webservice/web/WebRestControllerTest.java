@@ -4,9 +4,9 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.asyncDispatch;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -24,7 +24,8 @@ public class WebRestControllerTest {
     private MockMvc mvc;
 
     @Test
-    public void HelloWorld가_리턴된다() throws Exception{
+    @WithMockUser(roles = "USER")
+    public void return_HelloWorld() throws Exception{
         String hello = "HelloWorld";
 
         mvc.perform(get("/hello")) //이 URL로 실제 Controller를 실행했을 때 내용에 뭐가 들어가는지 확인하는 듯... 와... 신기하다...
@@ -39,6 +40,7 @@ public class WebRestControllerTest {
     }
 
     @Test
+    @WithMockUser(roles = "USER")
     public void returnRestDto() throws Exception{
         String name = "hello";
         int amount = 1000;

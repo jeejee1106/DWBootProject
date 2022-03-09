@@ -1,6 +1,7 @@
 package com.jeejee.webservice.domain.post;
 
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +33,7 @@ public class PostsRepositoryTest {
     }
 
     @Test
-    public void 게시글저장_불러오기() {
+    public void getPostsSave() {
 
         //save, findAll 기능을 테스트하는 코드
 
@@ -63,10 +64,10 @@ public class PostsRepositoryTest {
         //Posts를 저장한뒤, 해당 Posts에 createdDate와 modifiedDate이 있는지 확인해보는 테스트
 
         //given
-        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime now = LocalDateTime.of(2022,3,9,0,0,0);
         postsRepository.save(Posts.builder()
-                .title("테스트 게시물")
-                .content("테스크 본문")
+                .title("테스트 게시글")
+                .content("테스트 본문")
                 .author("test@gmail.com")
                 .build());
 
