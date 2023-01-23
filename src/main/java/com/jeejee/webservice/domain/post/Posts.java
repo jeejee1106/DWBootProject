@@ -31,12 +31,12 @@ import javax.persistence.*;
 
 @NoArgsConstructor(access = AccessLevel.PROTECTED) //기본 생성자 자동 추가, 기본생성자의 접근 권한을 protected로 제한. Entity 클래스를 프로젝트 코드상에서 기본생성자로 생성하는 것은 막되, JPA에서 Entity 클래스를 생성하는것은 허용하기 위해 추가
 @Getter
-@Entity //테이블과 링크될 클래스임을 나타냄(언더스코어 네이밍으로 이름 매칭)
+@Entity //테이블과 링크될 클래스임을 나타냄(언더스코어 네이밍(_)으로 이름 매칭 ex) SalesManager.java -> sales_manager table)
 public class Posts extends BaseTimeEntity {
 
     @Id //해당 테이블의 pk필드를 나타냄
     @GeneratedValue(strategy = GenerationType.IDENTITY) //스프링부트 2.0이상에선 옵션 추가해야함(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long id; //Long 타입은 MySql 기준으로 하면 bigint 타입으로 설정됨.
 
     @Column(length = 500, nullable = false) //문자열의 경우 기본값이 VARCHAR(255)인데, 사이즈를 500으로 늘림
     private String title;
@@ -44,7 +44,7 @@ public class Posts extends BaseTimeEntity {
     @Column(columnDefinition = "TEXT", nullable = false) //문자열의 경우 기본값이 VARCHAR(255)인데, 타입을 TEXT로 바꿈 (TEXT타입은 max사이즈가 무조건 65535이다.)
     private String content;
 
-    private String author;
+    private String author; //이렇게 @Column 어노테이션을 사용하지 않으면 기본값으로 설정이 된다. (VARCHAR(255))
 
     @Builder //롬복 어노테이션 - 클래스에 선언하면 해당 클래스의 빌더패턴 클래스를 생성하고, 생성자 상단에 선언시 생성자에 포함된 필드만 빌더에 포함
     public Posts(String title, String content, String author) {

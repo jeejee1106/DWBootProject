@@ -20,6 +20,9 @@ public interface PostsRepository extends JpaRepository<Posts, Long> {
      * 실제로 아래 코드는 SpringDataJpa에서 제공하는 기본 메소드만으로 해결할 수 있다.
      * 굳이 @Query를 쓴 이유는, SpringDataJpa에서 제공하지 않는 메소드는 이처럼 쿼리로 작성해도 된다는 것을 보여주기 위함!
      * 또한 가독성도 높아짐!
+     *
+     * 규모가 있는 프로젝트에서의 데이터 조회는 FK의 조인, 복잡한 조건등으로 인해 이런 Entity 클래스만으로 처리하기 어려워 조회용 프레임워크를 추가로 사용.
+     * 대표적 예로 querydsl, jooq, MyBatis 등이 있다.
      */
 
     @Query("select p from Posts p order by p.id desc")

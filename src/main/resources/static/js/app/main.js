@@ -30,8 +30,8 @@ var main = {
             alert('글이 등록되었습니다.');
             // location.reload();
             window.location.href='/';
-        }).fail(function (error) {
-            alert(error);
+        }).fail(function (error, message) {
+            alert("실패 : " + error + message);
         });
     },
 

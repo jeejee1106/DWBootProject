@@ -26,18 +26,18 @@ public class PostServiceTest {
 
     @Test
     public void dtoDataIsSavePostsTable() {
-        //given
+        //given - Dto 클래스가
         PostsSaveRequestDto dto = PostsSaveRequestDto.builder()
-                .author("test@gmail.com")
+                .author("test3@gmail.com")
                 .content("테스트")
                 .title("테스트 타이틀")
                 .build();
 
-        //when
+        //when - service.save 메소드에 전달되면,
         postsService.save(dto);
 
-        //then
-        Posts posts = postsRepository.findAll().get(0);
+        //then -  DB에 잘 저장되었는지 검증
+        Posts posts = postsRepository.findAll().get(2);
         assertThat(posts.getAuthor()).isEqualTo(dto.getAuthor());
         assertThat(posts.getContent()).isEqualTo(dto.getContent());
         assertThat(posts.getTitle()).isEqualTo(dto.getTitle());

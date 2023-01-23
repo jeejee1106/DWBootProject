@@ -35,7 +35,7 @@ public class WebRestController {
 //    @PostMapping("/posts")
 //    public Long savePosts(@RequestBody PostsSaveRequestDto dto){
 //        return postsService.save(dto);
-//    } //PostsApController로 옮김
+//    } //PostsApiController로 옮김
 
 //
 //    @PostMapping("/posts")

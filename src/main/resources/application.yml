@@ -3,7 +3,7 @@ spring:
     active: local # 기본 환경 선택
 
 # local 환경
----
+--- #application.yml 에서 --- 를 기준으로 상단은 공통 영역, 하단이 각 profile의 설정 영역. 공통영역의 값은 각 profile환경에 동일한 설정이 있으면 무시되고, 없으면 공통영역의 설정값이 사용
 spring:
   profiles:
     include: oauth
@@ -14,7 +14,8 @@ spring:
     hibernate:
       ddl-auto: create-drop
     defer-datasource-initialization: true #얘에 대해 알아보기
-  # 웹 콘솔 활성화
+  # 웹 콘솔 활성화 -> 스프링 2.3 이후 버전부터는 h-2로그인 창의 JDBC URL에 인텔리제이 콘솔에 뜨는
+  #H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:1c76f43d-3313-4d20-a5c8-d7d0fbd9f598' -> 해당 로그를 찾아서 jdbc:h2:mem:1c76f43d-3313-4d20-a5c8-d7d0fbd9f598 부분을 복붙해주기!!!
   h2:
     console:
       enabled: true

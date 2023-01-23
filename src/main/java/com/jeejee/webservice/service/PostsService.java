@@ -29,14 +29,16 @@ public class PostsService {
 
     //등록기능
     @Transactional
-    public Long save(PostsSaveRequestDto dto){
+    public Long save(PostsSaveRequestDto dto){ //Service 메소드는 Entity를 바로 받지 않고, 이전 포스팅 에서 생성한 Save용 DTO인 PostsSaveRequestDto를 받아서 저장
         return postsRepository.save(dto.toEntity()).getId(); //호출한쪽에서 저장한 게시글의 id를 알수있도록 id반환
+        //save는 jpaRepository에서 자동 생성 해주는 등록 메서드
     }
 
     //전체 글 조회
     @Transactional(readOnly = true) //readOnly = true 옵션은 트랜잭션 범위는 유지하되, 조회 기능만 남겨두는 역할을 한다. 조회 속도 개선!
     public List<PostsListResponseDto> findAllDesc() {
         return postsRepository.findAllDesc()
+                //repository 결과로 넘어온 Posts의 Stream을 map을 통해 PostsMainResponseDto로 변환 -> List로 반환하는 메서드
                 .map(PostsListResponseDto::new)
                 .collect(Collectors.toList());
     }
