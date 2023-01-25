@@ -49,8 +49,8 @@ public class PostsRepositoryTest {
 
         //then - 실제로 DB에 insert되었는지 확인하기 위해 조회 후 입력된 값 확인
         Posts posts = postsList.get(0);
-        assertThat(posts.getTitle().equals("테스트 게시글"));
-        assertThat(posts.getContent().equals("테스트 본문"));
+        assertThat(posts.getTitle()).isEqualTo("테스트 게시글");
+        assertThat(posts.getContent()).isEqualTo("테스트 본문");
 
         /**
          * DB가 설치가 안되어있는데 Repository를 사용할 수 있는 이유는, SpringBoot에서의 테스트 코드는 메모리 DB인 H2를 기본적으로 사용하기 때문
